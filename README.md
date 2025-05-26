@@ -1,42 +1,77 @@
 # GAN_Fraud_Imbalance_Project
 
-## Description
-This project explores the use of Generative Adversarial Networks (GANs) for balancing imbalanced datasets. Specifically, it applies GANs to credit card fraud detection. The goal is to generate synthetic data for the minority class to improve classification performance on imbalanced datasets.
 
-## Dataset
-The dataset used for this project is the [Credit Card Fraud Detection dataset](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) from Kaggle. It contains transactions made by credit cards, with a focus on fraudulent transactions, which are rare and form the minority class.
 
-### Imbalance Analysis
-The dataset exhibits a significant class imbalance, with the majority of transactions being non-fraudulent. The challenge is to generate synthetic data for the fraudulent class using GANs to balance the dataset.
+## Overview
 
-## How to Run
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/GAN_Fraud_Imbalance_Project.git
+This project utilizes Generative Adversarial Networks (GAN) to balance the class distribution of a credit card fraud detection dataset. The goal is to generate synthetic fraud data (minority class) to augment the dataset, which helps in training more balanced machine learning models.
+
+### Key Features
+- Uses a GAN to generate synthetic fraud samples for an imbalanced dataset.
+- Evaluates machine learning models trained on original and augmented datasets.
+- Implements a **Vanilla GAN** and **WGAN (Wasserstein GAN)** for data augmentation.
+- Models trained include **Random Forest Classifier** to evaluate the impact of synthetic data on fraud detection.
+
+## Requirements
+
+- Python 3.x
+- `pandas`
+- `matplotlib`
+- `seaborn`
+- `torch` (PyTorch)
+- `scikit-learn`
+
+## Installation
+
+### Step 1: Clone the repository
+
+```bash
+git clone https://github.com/yourusername/GAN_Fraud_Imbalance_Project.git
+cd GAN_Fraud_Imbalance_Project
 ````
 
-2. Navigate to the project directory:
+### Step 2: Install dependencies
 
-   ```bash
-   cd GAN_Fraud_Imbalance_Project
-   ```
-3. Install dependencies:
+Create a virtual environment and install the required packages:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Run the Jupyter notebook or Python scripts in the `src/` folder.
+```bash
+pip install -r requirements.txt
+```
 
-## GAN Implementation
+## How to Run the Code
 
-This project implements both a **Vanilla GAN** and an **advanced GAN variant** (e.g., **WGAN** or **CGAN**) for generating synthetic fraud transaction data. Both GANs are trained on the minority class (fraudulent transactions) to generate new samples.
+1. **Load and explore the dataset:**
+
+The dataset is preloaded in the code and will be loaded automatically on script execution. It will show the class distribution (fraud vs non-fraud).
+
+2. **Generate Synthetic Fraud Data with GAN:**
+
+The GAN model will generate synthetic fraud samples, which will be combined with the original non-fraud data.
+
+3. **Train Classifiers on Both Original and Augmented Data:**
+
+The classifiers will be trained and evaluated on:
+
+* Original imbalanced dataset
+* Augmented dataset with synthetic fraud data
+
+4. **Run the main script:**
+
+```bash
+python main.py
+```
+
+The script will output the confusion matrix and classification report for both the **original imbalanced dataset** and the **augmented dataset** with synthetic data.
 
 ## Results
 
-The performance of the classifiers trained on:
+### Expected Output:
 
-* The original imbalanced dataset.
-* The dataset balanced using Vanilla GAN.
-* The dataset balanced using an advanced GAN variant.
+* **Confusion Matrix** and **Classification Report** for:
 
-Evaluation metrics include Accuracy, Precision, Recall, F1-Score, AUC-ROC, and Confusion Matrix.
+  * **Original dataset**
+  * **Augmented dataset** using Vanilla GAN and WGAN
+
+The output will show improved performance in terms of **recall** and **F1-score** for the fraud class when the model is trained on the augmented dataset.
+
+
